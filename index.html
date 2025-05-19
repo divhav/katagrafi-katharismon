@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Καταγραφή Καθαρισμών Σούπερ Μάρκετ Ηλιόπουλος</title>
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      background: #ffffff;
+      font-family: Arial, sans-serif;
+      padding: 10px;
+      box-sizing: border-box;
+    }
+    .buttons {
+      display: flex;
+      flex-direction: column;    /* πάντα κάθετα */
+      width: 100%;                /* όλο το πλάτος */
+      max-width: 400px;
+      gap: 15px;
+    }
+    button {
+      width: 100%;       /* κουμπί γεμίζει όλο το container */
+      padding: 20px;
+      border: none;
+      border-radius: 6px;
+      background: #e72d2d;
+      color: white;
+      font-size: 1.3rem;
+      font-weight: bold;
+      cursor: pointer;
+      transition: transform .1s;
+    }
+    button:active {
+      transform: scale(0.95);
+    }
+    .bio {
+      background-color: #169212;
+    }
+    .cop {
+      background-color: #126a92;
+    }
+  </style>
+</head>
+<body>
+  <div class="buttons">
+    <button data-action="Καθαρισμός Δάπεδο">Καθαρισμός Δάπεδο</button>
+    <button data-action="Καθαρισμός Ράφια">Καθαρισμός Ράφια</button>
+    <button data-action="Καθαρισμός Καρότσια / Καλάθια">Καθαρισμός Καρότσια / Καλάθια</button>
+    <button data-action="Καθαρισμός Τζάμια">Καθαρισμός Τζάμια</button>
+    <button data-action="Καθαρισμός WC">Καθαρισμός WC</button>
+    <button data-action="Αλλος Καθαρισμός">Άλλος Καθαρισμός</button>
+    <button class="bio" data-action="Βιολογικός Καθαρισμός">Βιολογικός Καθαρισμός</button>
+    <button class="cop" data-action="Απεντόμωση">Απεντόμωση</button>
+  </div>
+  <script>
+    // Κλήση server-side recordCleaning μέσω sandbox
+    document.querySelectorAll('button').forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        var action = btn.getAttribute('data-action');
+        google.script.run
+          .withSuccessHandler(function() { alert('Καταγράφηκε: ' + action); })
+          .withFailureHandler(function(err) { alert('Σφάλμα: ' + err.message); })
+          .recordCleaning(action);
+      });
+    });
+  </script>
+</body>
+</html>

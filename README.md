@@ -1,4 +1,4 @@
-# Εφαρμογή Καταγραφών Google Sheets & Apps Script
+# Εφαρμογή καταγραφής καθαρισμών Apps Script
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)]
 
